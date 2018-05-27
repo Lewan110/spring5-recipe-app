@@ -1,6 +1,7 @@
 package guru.springframework.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 /**
@@ -10,6 +11,7 @@ import javax.persistence.*;
 public class Recipe {
 
     @Id
+    //get autoincrement id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -23,9 +25,15 @@ public class Recipe {
     //todo add
     //private Difficulty difficulty;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="recipe")
+    private Set<Ingredient> ingredients;
+
+
+    //saving as clob
     @Lob
     private Byte[] image;
 
+    //when deleting recipe, also delete notes
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 

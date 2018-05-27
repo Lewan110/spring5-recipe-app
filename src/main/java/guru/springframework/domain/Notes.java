@@ -15,6 +15,7 @@ public class Notes {
     @OneToOne
     private Recipe recipe;
 
+    //to allows longer notes,saving as clob
     @Lob
     private String recipeNotes;
 
